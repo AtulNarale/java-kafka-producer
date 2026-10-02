@@ -13,7 +13,11 @@ public class KafkaService {
 
 
     public String sendMessage(Course course){
-        kafkaTemplate.send("telusko","course",course);
+
+        String key = String.valueOf(course.getCourseId());
+
+        kafkaTemplate.send("telusko",key,course);
+
         return  "Course_message_sent_to_kafka_server";
     }
 
